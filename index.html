@@ -1,40 +1,336 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supermarket Simulator Rupiah - Kasir Cerdas CBP</title>
 
-    <title>Supermarket Simulator Rupiah: Kasir Cerdas CBP</title>
-
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
-    <header class="topbar">
+<!-- ========================= -->
+<!-- START SCREEN -->
+<!-- ========================= -->
 
-        <div class="title-section">
-            <h1>🛒 Kasir Cerdas CBP</h1>
-            <p>Supermarket Simulator Rupiah</p>
+<div id="startScreen" class="screen">
+
+    <h1>🛒 Supermarket Simulator Rupiah</h1>
+
+    <h2>Kasir Cerdas CBP</h2>
+
+    <div class="profile-box">
+
+        <input
+        type="text"
+        id="playerName"
+        placeholder="Masukkan Nama Pemain">
+
+        <button id="newGameBtn">
+            Mulai Game
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- GAME SCREEN -->
+<!-- ========================= -->
+
+<div id="gameScreen" class="hidden">
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div>
+            Hari:
+            <span id="dayNumber">1</span>
         </div>
 
-        <div class="stats">
-            <div class="stat-card">
-                <span>Skor</span>
-                <h2 id="score">0</h2>
-            </div>
+        <div>
+            Pelanggan:
+            <span id="customerCount">1</span>/12
+        </div>
 
-            <div class="stat-card">
-                <span>Level</span>
-                <h2 id="level">1</h2>
-            </div>
+        <div>
+            Skor:
+            <span id="score">0</span>
+        </div>
 
-            <div class="stat-card">
-                <span>Combo</span>
-                <h2 id="combo">0</h2>
-            </div>
+        <div>
+            Koin:
+            <span id="coins">0</span>
+        </div>
+
+    </div>
+
+    <!-- TIMER -->
+
+    <div id="timerBox">
+
+        <h2>
+            ⏳
+            <span id="timer">60</span>
+            detik
+        </h2>
+
+        <div id="patienceLabel">
+
+        </div>
+
+    </div>
+
+    <!-- CUSTOMER -->
+
+    <div class="customer-section">
+
+        <h2 id="customerName">
+
+        </h2>
+
+        <p id="customerDialog">
+
+        </p>
+
+    </div>
+
+    <!-- SHOPPING LIST -->
+
+    <div class="shopping-section">
+
+        <h2>Daftar Belanja</h2>
+
+        <div id="shoppingList">
+
+        </div>
+
+        <h3>
+
+            Total:
+            <span id="totalPrice">
+                Rp0
+            </span>
+
+        </h3>
+
+    </div>
+
+    <!-- PAYMENT -->
+
+    <div class="payment-section">
+
+        <h2>Pembayaran</h2>
+
+        <div id="moneyContainer">
+
+        </div>
+
+    </div>
+
+    <!-- INSPECTION -->
+
+    <div class="inspection-panel">
+
+        <button id="lookBtn">
+            👁 Dilihat
+        </button>
+
+        <button id="touchBtn">
+            ✋ Diraba
+        </button>
+
+        <button id="lightBtn">
+            💡 Diterawang
+        </button>
+
+    </div>
+
+    <!-- CLUE BOX -->
+
+    <div id="clueBox">
+
+        Pilih metode pemeriksaan.
+
+    </div>
+
+    <!-- ACTIONS -->
+
+    <div class="action-panel">
+
+        <button id="acceptBtn">
+            ✅ Terima Uang
+        </button>
+
+        <button id="rejectBtn">
+            ❌ Tolak Uang
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- EDUCATION POPUP -->
+<!-- ========================= -->
+
+<div id="educationPopup" class="popup hidden">
+
+    <div class="popup-content">
+
+        <h2>📚 Edukasi CBP</h2>
+
+        <p id="educationText"></p>
+
+        <button id="closeEducation">
+
+            Lanjut
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- DAY COMPLETE -->
+<!-- ========================= -->
+
+<div id="dayPopup" class="popup hidden">
+
+    <div class="popup-content">
+
+        <h2>🌙 Toko Tutup</h2>
+
+        <p>
+            Hari selesai
+        </p>
+
+        <p>
+            Skor:
+            <span id="dayScore"></span>
+        </p>
+
+        <p>
+            Koin:
+            <span id="dayCoins"></span>
+        </p>
+
+        <button id="nextDayBtn">
+
+            Hari Berikutnya
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- SHOP -->
+<!-- ========================= -->
+
+<div id="shopPopup" class="popup hidden">
+
+    <div class="popup-content">
+
+        <h2>🏪 Upgrade Toko</h2>
+
+        <p>
+
+            Koin:
+            <span id="shopCoins">
+                0
+            </span>
+
+        </p>
+
+        <button id="upgradePatience">
+
+            Upgrade Kesabaran
+        </button>
+
+        <button id="upgradeItems">
+
+            Upgrade Barang
+        </button>
+
+        <button id="upgradeBonus">
+
+            Upgrade Bonus Kasir
+        </button>
+
+        <button id="closeShop">
+
+            Tutup
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- LEADERBOARD -->
+<!-- ========================= -->
+
+<div id="leaderboardPopup"
+class="popup hidden">
+
+    <div class="popup-content">
+
+        <h2>🏆 Leaderboard</h2>
+
+        <div id="leaderboardList">
+
+        </div>
+
+        <button id="closeLeaderboard">
+
+            Tutup
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MONEY INSPECTION MODAL -->
+<!-- ========================= -->
+
+<div id="moneyModal"
+class="popup hidden">
+
+    <div class="popup-content">
+
+        <h2 id="moneyTitle">
+
+            Rp50.000
+
+        </h2>
+
+        <p id="moneyInfo">
+
+        </p>
+
+        <button id="closeMoneyModal">
+
+            Tutup
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+<button id="saveAndExit">
+💾 Simpan & Keluar
+</button>            </div>
 
             <div class="stat-card">
                 <span>Palsu Ditemukan</span>
