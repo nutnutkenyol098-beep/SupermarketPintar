@@ -1,714 +1,607 @@
-/* ===================================
-   RESET
-=================================== */
+/* ========================= */
+/* RESET */
+/* ========================= */
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Tahoma,sans-serif;
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f4f4f4;
-    color:#222;
-    min-height:100vh;
+background:#f5f5f5;
+color:#222;
+min-height:100vh;
 }
 
-/* ===================================
-   HEADER
-=================================== */
+/* ========================= */
+/* GLOBAL */
+/* ========================= */
+
+.hidden{
+display:none !important;
+}
+
+.screen{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+}
+
+h1{
+font-size:2rem;
+color:#b71c1c;
+margin-bottom:10px;
+text-align:center;
+}
+
+h2{
+text-align:center;
+}
+
+button{
+cursor:pointer;
+border:none;
+transition:0.25s;
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+button:active{
+transform:scale(.96);
+}
+
+/* ========================= */
+/* START SCREEN */
+/* ========================= */
+
+.profile-box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,.1);
+display:flex;
+flex-direction:column;
+gap:12px;
+width:300px;
+}
+
+.profile-box input{
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:1rem;
+}
+
+.profile-box button{
+background:#d32f2f;
+color:white;
+padding:12px;
+border-radius:10px;
+font-weight:bold;
+}
+
+/* ========================= */
+/* GAME SCREEN */
+/* ========================= */
+
+#gameScreen{
+padding:15px;
+max-width:1200px;
+margin:auto;
+}
+
+/* ========================= */
+/* TOP BAR */
+/* ========================= */
 
 .topbar{
-    background:linear-gradient(
-        135deg,
-        #b30000,
-        #d61a1a
-    );
-
-    color:white;
-
-    padding:15px 20px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-
-    box-shadow:0 4px 10px rgba(0,0,0,.2);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-bottom:15px;
 }
 
-.title-section h1{
-    font-size:2rem;
+.topbar div{
+background:white;
+padding:12px;
+border-radius:12px;
+font-weight:bold;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
-.title-section p{
-    opacity:.9;
+/* ========================= */
+/* TIMER */
+/* ========================= */
+
+#timerBox{
+background:linear-gradient(
+135deg,
+#ffebee,
+#ffcdd2
+);
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+text-align:center;
+border:3px solid #e53935;
 }
 
-.stats{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
+#timer{
+font-size:2rem;
+font-weight:bold;
+color:#d50000;
 }
 
-.stat-card{
-    background:white;
-    color:#222;
-
-    min-width:100px;
-
-    padding:10px;
-    border-radius:12px;
-
-    text-align:center;
-
-    border:3px solid gold;
+#patienceLabel{
+margin-top:8px;
+font-weight:bold;
 }
 
-.stat-card span{
-    font-size:.8rem;
-    color:#666;
+/* timer warning */
+
+.timer-warning{
+animation:blink 1s infinite;
 }
 
-.stat-card h2{
-    color:#b30000;
+@keyframes blink{
+
+0%{
+opacity:1;
 }
 
-/* ===================================
-   LAYOUT
-=================================== */
-
-.game-layout{
-
-    display:grid;
-
-    grid-template-columns:
-    1fr
-    1.2fr
-    1fr;
-
-    gap:20px;
-
-    padding:20px;
+50%{
+opacity:.4;
 }
 
-.customer-panel,
-.money-panel,
-.inspection-panel{
-
-    background:white;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
+100%{
+opacity:1;
+}
 
 }
 
-/* ===================================
-   CUSTOMER
-=================================== */
+/* ========================= */
+/* CUSTOMER */
+/* ========================= */
 
-.customer-card{
-
-    margin-top:15px;
-
-    background:#fff7f7;
-
-    border:2px solid #e9bcbc;
-
-    border-radius:12px;
-
-    padding:15px;
+.customer-section{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-.customer-card h3{
-    margin-bottom:10px;
+#customerName{
+color:#b71c1c;
+margin-bottom:10px;
+}
+
+#customerDialog{
+font-size:1rem;
+line-height:1.5;
+}
+
+/* ========================= */
+/* SHOPPING LIST */
+/* ========================= */
+
+.shopping-section{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 #shoppingList{
-    margin-top:10px;
+display:flex;
+flex-direction:column;
+gap:8px;
+margin-top:10px;
+margin-bottom:10px;
 }
 
 .shopping-item{
-
-    display:flex;
-    justify-content:space-between;
-
-    padding:5px 0;
+display:flex;
+justify-content:space-between;
+background:#fafafa;
+padding:10px;
+border-radius:8px;
 }
 
-hr{
-    margin:15px 0;
+/* ========================= */
+/* TOTAL */
+/* ========================= */
+
+#totalPrice{
+color:#d32f2f;
+font-size:1.3rem;
+font-weight:bold;
 }
 
-/* ===================================
-   MONEY SECTION
-=================================== */
+/* ========================= */
+/* MONEY AREA */
+/* ========================= */
+
+.payment-section{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
 
 #moneyContainer{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:15px;
+}
 
-    display:flex;
-    flex-wrap:wrap;
+/* ========================= */
+/* MONEY CARD */
+/* ========================= */
 
-    gap:15px;
+.money-card{
+width:160px;
+height:90px;
+border-radius:12px;
+padding:10px;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+cursor:pointer;
+transition:.2s;
+position:relative;
+overflow:hidden;
+}
 
-    margin-top:15px;
+.money-card:hover{
+transform:translateY(-4px);
+}
+
+.money-card::after{
+content:"";
+position:absolute;
+top:0;
+left:-60%;
+width:40%;
+height:100%;
+background:rgba(255,255,255,.25);
+transform:skewX(-20deg);
+}
+
+.money-card:hover::after{
+left:130%;
+transition:.7s;
+}
+
+.money-1000{
+background:#616161;
+}
+
+.money-2000{
+background:#8e24aa;
+}
+
+.money-5000{
+background:#8d6e63;
+}
+
+.money-10000{
+background:#7cb342;
+}
+
+.money-20000{
+background:#2e7d32;
+}
+
+.money-50000{
+background:#1565c0;
+}
+
+.money-100000{
+background:#d32f2f;
+}
+
+.money-value{
+font-size:1.2rem;
+font-weight:bold;
+}
+
+.money-label{
+font-size:.8rem;
+opacity:.9;
+}
+
+/* ========================= */
+/* INSPECTION */
+/* ========================= */
+
+.inspection-panel{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:15px;
+}
+
+.inspection-panel button{
+flex:1;
+min-width:120px;
+padding:14px;
+font-size:1rem;
+font-weight:bold;
+border-radius:12px;
+color:white;
+}
+
+#lookBtn{
+background:#1565c0;
+}
+
+#touchBtn{
+background:#ef6c00;
+}
+
+#lightBtn{
+background:#8e24aa;
+}
+
+/* ========================= */
+/* CLUE BOX */
+/* ========================= */
+
+#clueBox{
+background:#fff8e1;
+border-left:6px solid #ffb300;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;
+min-height:90px;
+line-height:1.5;
+}
+
+/* ========================= */
+/* ACCEPT / REJECT */
+/* ========================= */
+
+.action-panel{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.action-panel button{
+flex:1;
+padding:16px;
+font-size:1rem;
+font-weight:bold;
+border-radius:12px;
+color:white;
+}
+
+#acceptBtn{
+background:#2e7d32;
+}
+
+#rejectBtn{
+background:#c62828;
+}
+
+/* ========================= */
+/* POPUPS */
+/* ========================= */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:15px;
+z-index:999;
+}
+
+.popup-content{
+background:white;
+width:100%;
+max-width:500px;
+border-radius:15px;
+padding:25px;
+text-align:center;
+animation:popupShow .25s ease;
+}
+
+@keyframes popupShow{
+
+from{
+transform:scale(.85);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+.popup-content button{
+margin-top:10px;
+width:100%;
+padding:12px;
+border-radius:10px;
+background:#d32f2f;
+color:white;
+font-weight:bold;
+}
+
+/* ========================= */
+/* LEADERBOARD */
+/* ========================= */
+
+#leaderboardList{
+max-height:300px;
+overflow:auto;
+margin-top:15px;
+}
+
+.leaderboard-item{
+display:flex;
+justify-content:space-between;
+padding:10px;
+margin-bottom:8px;
+background:#f5f5f5;
+border-radius:8px;
+}
+
+/* ========================= */
+/* MONEY MODAL */
+/* ========================= */
+
+#moneyInfo{
+margin-top:15px;
+line-height:1.7;
+text-align:left;
+}
+
+/* ========================= */
+/* SHOP */
+/* ========================= */
+
+#shopPopup button{
+margin-top:10px;
+}
+
+#shopCoins{
+font-weight:bold;
+color:#d32f2f;
+font-size:1.2rem;
+}
+
+/* ========================= */
+/* DAY COMPLETE */
+/* ========================= */
+
+#dayPopup p{
+margin-top:10px;
+}
+
+/* ========================= */
+/* CUSTOMER MOOD */
+/* ========================= */
+
+.customer-calm{
+border-left:6px solid #43a047;
+}
+
+.customer-normal{
+border-left:6px solid #fbc02d;
+}
+
+.customer-angry{
+border-left:6px solid #e53935;
+}
+
+/* ========================= */
+/* STREAK EFFECT */
+/* ========================= */
+
+.streak-glow{
+animation:glow 1.2s infinite;
+}
+
+@keyframes glow{
+
+0%{
+box-shadow:0 0 5px gold;
+}
+
+50%{
+box-shadow:0 0 25px gold;
+}
+
+100%{
+box-shadow:0 0 5px gold;
+}
+
+}
+
+/* ========================= */
+/* RESPONSIVE TABLET */
+/* ========================= */
+
+@media(max-width:900px){
+
+.topbar{
+grid-template-columns:repeat(2,1fr);
 }
 
 .money-card{
-
-    width:140px;
-
-    min-height:90px;
-
-    background:linear-gradient(
-        145deg,
-        #fff7d6,
-        #ffe89c
-    );
-
-    border:3px solid gold;
-
-    border-radius:12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.25s;
+width:140px;
 }
 
-.money-card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 6px 12px rgba(0,0,0,.15);
 }
 
-.money-card.selected{
-
-    border-color:#b30000;
-
-    background:#ffd9d9;
-}
-
-/* ===================================
-   INSPEKSI
-=================================== */
-
-.selected-money{
-
-    background:#fafafa;
-
-    padding:12px;
-
-    border-radius:10px;
-
-    margin-bottom:15px;
-}
-
-#selectedMoney{
-
-    margin-top:10px;
-
-    font-size:1.2rem;
-
-    font-weight:bold;
-
-    color:#b30000;
-}
-
-.inspection-buttons{
-
-    display:grid;
-
-    grid-template-columns:1fr;
-
-    gap:10px;
-
-    margin-bottom:15px;
-}
-
-.inspection-buttons button{
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-.inspection-buttons button:hover{
-    transform:scale(1.02);
-}
-
-#lihatBtn{
-    background:#d32f2f;
-    color:white;
-}
-
-#rabaBtn{
-    background:#fbc02d;
-}
-
-#terawangBtn{
-    background:#1976d2;
-    color:white;
-}
-
-.inspection-result{
-
-    background:#f8f8f8;
-
-    min-height:120px;
-
-    border-radius:10px;
-
-    padding:15px;
-
-    line-height:1.5;
-}
-
-/* ===================================
-   ACTION BUTTON
-=================================== */
-
-.decision-section{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    padding:20px;
-}
-
-.accept-btn,
-.reject-btn{
-
-    border:none;
-
-    padding:15px 35px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:1rem;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-.accept-btn{
-    background:#2e7d32;
-    color:white;
-}
-
-.reject-btn{
-    background:#c62828;
-    color:white;
-}
-
-.accept-btn:hover,
-.reject-btn:hover{
-
-    transform:scale(1.05);
-}
-
-/* ===================================
-   FAKE SELECTOR
-=================================== */
-
-.fake-selector{
-
-    margin:20px;
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:15px;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
-}
-
-#fakeSelectorList{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:15px;
-    margin-bottom:15px;
-}
-
-.fake-option{
-
-    background:#fff4d0;
-
-    border:2px solid gold;
-
-    border-radius:10px;
-
-    padding:12px;
-
-    cursor:pointer;
-}
-
-.fake-option.selected{
-
-    background:#ffcccc;
-
-    border-color:red;
-}
-
-#confirmFakeBtn{
-
-    background:#b30000;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 20px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-}
-
-/* ===================================
-   LEADERBOARD
-=================================== */
-
-.leaderboard{
-
-    margin:20px;
-
-    background:white;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
-}
-
-.leaderboard h2{
-
-    color:#b30000;
-
-    margin-bottom:15px;
-}
-
-.leaderboard-card{
-
-    background:#fff8d6;
-
-    border:2px solid gold;
-
-    border-radius:12px;
-
-    padding:15px;
-}
-
-.leaderboard-card p{
-    margin:8px 0;
-}
-
-/* ===================================
-   MODAL
-=================================== */
-
-.modal{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:rgba(0,0,0,.6);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    z-index:999;
-}
-
-.modal-content{
-
-    background:white;
-
-    width:90%;
-    max-width:550px;
-
-    border-radius:15px;
-
-    padding:25px;
-
-    text-align:center;
-
-    animation:popup .25s ease;
-}
-
-.modal-content h2{
-    color:#b30000;
-    margin-bottom:15px;
-}
-
-.modal-content p{
-
-    line-height:1.6;
-
-    margin-bottom:20px;
-}
-
-.modal-content button{
-
-    background:#b30000;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 25px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-}
-
-/* ===================================
-   START SCREEN
-=================================== */
-
-.overlay{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:rgba(0,0,0,.7);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    z-index:9999;
-}
-
-.start-card{
-
-    width:90%;
-    max-width:550px;
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:15px;
-
-    text-align:center;
-}
-
-.start-card h2{
-
-    color:#b30000;
-
-    margin-bottom:15px;
-}
-
-.start-card ul{
-
-    text-align:left;
-
-    margin:15px 0 20px 20px;
-}
-
-.start-card input{
-
-    width:100%;
-
-    padding:12px;
-
-    margin-bottom:15px;
-
-    border-radius:10px;
-
-    border:1px solid #ccc;
-}
-
-.start-card button{
-
-    background:#b30000;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 20px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-}
-
-/* ===================================
-   FOOTER
-=================================== */
-
-footer{
-
-    text-align:center;
-
-    padding:20px;
-
-    margin-top:20px;
-
-    background:#b30000;
-
-    color:white;
-}
-
-/* ===================================
-   UTILITIES
-=================================== */
-
-.hidden{
-    display:none !important;
-}
-
-/* ===================================
-   ANIMASI
-=================================== */
-
-@keyframes popup{
-
-    from{
-        transform:scale(.8);
-        opacity:0;
-    }
-
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-@keyframes customerEnter{
-
-    from{
-        transform:translateX(-60px);
-        opacity:0;
-    }
-
-    to{
-        transform:translateX(0);
-        opacity:1;
-    }
-}
-
-.customer-card{
-    animation:customerEnter .4s ease;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.03);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-}
-
-.money-card:hover{
-    animation:pulse .5s;
-}
-
-/* ===================================
-   RESPONSIVE TABLET
-=================================== */
-
-@media(max-width:1000px){
-
-    .game-layout{
-
-        grid-template-columns:
-        1fr;
-    }
-
-    .stats{
-        margin-top:15px;
-    }
-}
-
-/* ===================================
-   RESPONSIVE HP
-=================================== */
+/* ========================= */
+/* RESPONSIVE HP */
+/* ========================= */
 
 @media(max-width:600px){
 
-    .title-section h1{
-        font-size:1.5rem;
-    }
+.topbar{
+grid-template-columns:1fr;
+}
 
-    .stats{
+.money-card{
+width:100%;
+height:80px;
+}
 
-        width:100%;
+.inspection-panel{
+flex-direction:column;
+}
 
-        justify-content:center;
-    }
+.action-panel{
+flex-direction:column;
+}
 
-    .money-card{
+#timer{
+font-size:1.7rem;
+}
 
-        width:100%;
-    }
+.popup-content{
+padding:20px;
+}
 
-    .decision-section{
+}
 
-        flex-direction:column;
+/* ========================= */
+/* SCROLLBAR */
+/* ========================= */
 
-        align-items:center;
-    }
+::-webkit-scrollbar{
+width:8px;
+}
 
-    .accept-btn,
-    .reject-btn{
+::-webkit-scrollbar-thumb{
+background:#c62828;
+border-radius:20px;
+}
 
-        width:90%;
-    }
-  }
+::-webkit-scrollbar-track{
+background:#f0f0f0;
+}
